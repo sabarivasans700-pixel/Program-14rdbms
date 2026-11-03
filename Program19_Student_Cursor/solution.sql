@@ -1,26 +1,15 @@
-USE CollegeDB;
+DECLARE
+    CURSOR C1 IS
+    SELECT StudentID, StudentName, DepartmentID
+    FROM Student;
 
-DROP PROCEDURE IF EXISTS DisplayStudents;
-
-DELIMITER $$
-
-CREATE PROCEDURE DisplayStudents()
 BEGIN
-
-    -- Declare variables
-
-    -- Declare cursor
-
-    -- Declare NOT FOUND handler
-
-    -- Open cursor
-
-    -- Fetch records using a loop
-
-    -- Close cursor
-
-END $$
-
-DELIMITER ;
-
-CALL DisplayStudents();
+    FOR R IN C1 LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            R.StudentID || ' ' ||
+            R.StudentName || ' ' ||
+            R.DepartmentID
+        );
+    END LOOP;
+END;
+/
